@@ -21,13 +21,9 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.ctx = this.getComponent(cc.Graphics);
-
-        cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            onTouchBegan: this.onTouchBegan.bind(this),
-            onTouchMoved: this.onTouchMoved.bind(this),
-            onTouchEnded: this.onTouchEnded.bind(this),
-        }, this.node);
+        this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchBegan, this, true);
+        this.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMoved, this, true);
+        this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded, this, true);
 
         this.points = [];
     },
