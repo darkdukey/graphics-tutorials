@@ -108,11 +108,12 @@ cc.Class({
     },
 
     onLoad: function () {
-        if (cc.director.setClearColor) {
-            cc.director.setClearColor( cc.Color.WHITE );
-        }
         
-        this.stencil = new _ccsg.GraphicsNode();
+        let g = new cc.Node();
+        this.stencil = g.addComponent(cc.Graphics);
+        this.node.addChild(g);
+
+        //this.stencil = new _ccsg.GraphicsNode();
         this.mask._refreshStencil = function () {};
         this.mask.enabled = true;
         this.mask._sgNode.setStencil(this.stencil);
@@ -332,7 +333,7 @@ cc.Class({
         pg.clear();
         s.clear();
 
-        this.generateCoords();
+        //this.generateCoords();
 
         s.strokeColor = inputToRGB('white');
         this.drawOutline(s);
