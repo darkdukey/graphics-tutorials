@@ -116,7 +116,10 @@ cc.Class({
         //this.stencil = new _ccsg.GraphicsNode();
         this.mask._refreshStencil = function () {};
         this.mask.enabled = true;
-        this.mask._sgNode.setStencil(this.stencil);
+        //TODO: fix the mask
+        //this.mask.spriteFrame = this.stencil;
+        //this.mask.setStencil(this.stencil);
+        //this.mask._sgNode.setStencil(this.stencil);
 
         let nCoords = 200;
         let step = 2 * Math.PI / nCoords;
