@@ -20,7 +20,6 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchBegan, this, true);
         this.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMoved, this, true);
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded, this, true);
-        
     },
 
     onTouchBegan: function (touch, event) {

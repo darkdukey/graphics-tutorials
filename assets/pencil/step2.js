@@ -17,13 +17,9 @@ cc.Class({
     // use this for initialization
     onLoad: function () {
         this.ctx = this.getComponent(cc.Graphics);
-
-        cc.eventManager.addListener({
-            event: cc.EventListener.TOUCH_ONE_BY_ONE,
-            onTouchBegan: this.onTouchBegan.bind(this),
-            onTouchMoved: this.onTouchMoved.bind(this),
-            onTouchEnded: this.onTouchEnded.bind(this),
-        }, this.node);
+        this.node.on(cc.Node.EventType.TOUCH_START, this.onTouchBegan, this, true);
+        this.node.on(cc.Node.EventType.TOUCH_MOVE, this.onTouchMoved, this, true);
+        this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded, this, true);
     },
 
     onTouchBegan: function (touch, event) {
@@ -51,7 +47,7 @@ cc.Class({
         ctx.moveTo(p1.x, p1.y);
 
         for (let i = 1, l = points.length; i < l-1; i++) {
-            let mid = cc.pMidpoint(p1, p2);
+            let mid = p1.add(p2).mul(0.5);
 
             ctx.quadraticCurveTo(p1.x, p1.y, mid.x, mid.y);
 
