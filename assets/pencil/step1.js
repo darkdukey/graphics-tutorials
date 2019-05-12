@@ -22,20 +22,20 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded, this, true);
     },
 
-    onTouchBegan: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchBegan: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
-        this.points = [touchLoc];
+        this.points = [loc];
         cc.log("Touch begin");
         return true;
     },
 
-    onTouchMoved: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchMoved: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
-        this.points.push(touchLoc);
+        this.points.push(loc);
 
         this.ctx.clear();
         for (let i = 0, l = this.points.length; i < l; i++) {
@@ -51,8 +51,7 @@ cc.Class({
         this.ctx.stroke();
     },
 
-    onTouchEnded: function (touch, event) {
-        cc.log("Touch ended");
+    onTouchEnded: function (event) {
     },
 
     // called every frame, uncomment this function to activate update callback

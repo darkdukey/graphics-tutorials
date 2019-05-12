@@ -26,51 +26,51 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded, this, true);
     },
 
-    onTouchBegan: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchBegan: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
-        this.lastPoint = touchLoc;
+        this.lastPoint = loc;
 
         return true;
     },
 
-    onTouchMoved: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchMoved: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
         let ctx = this.ctx;
         let lastPoint = this.lastPoint;        
 
         ctx.strokeColor = cc.color(0,0,0,255);
         ctx.moveTo(lastPoint.x - 4, lastPoint.y - 4);
-        ctx.lineTo(touchLoc.x - 4, touchLoc.y - 4);
+        ctx.lineTo(loc.x - 4, loc.y - 4);
         ctx.stroke();
         
         ctx.strokeColor = cc.color(0,0,0,200);
         ctx.moveTo(lastPoint.x - 2, lastPoint.y - 2);
-        ctx.lineTo(touchLoc.x - 2, touchLoc.y - 2);
+        ctx.lineTo(loc.x - 2, loc.y - 2);
         ctx.stroke();
         
         ctx.strokeColor = cc.color(0,0,0,130);
         ctx.moveTo(lastPoint.x, lastPoint.y);
-        ctx.lineTo(touchLoc.x, touchLoc.y);
+        ctx.lineTo(loc.x, loc.y);
         ctx.stroke();
         
         ctx.strokeColor = cc.color(0,0,0,80);
         ctx.moveTo(lastPoint.x + 2, lastPoint.y + 2);
-        ctx.lineTo(touchLoc.x + 2, touchLoc.y + 2);
+        ctx.lineTo(loc.x + 2, loc.y + 2);
         ctx.stroke();
         
         ctx.strokeColor = cc.color(0,0,0,20);
         ctx.moveTo(lastPoint.x + 4, lastPoint.y + 4);
-        ctx.lineTo(touchLoc.x + 4, touchLoc.y + 4);
+        ctx.lineTo(loc.x + 4, loc.y + 4);
         ctx.stroke();
 
-        this.lastPoint = touchLoc;
+        this.lastPoint = loc;
     },
 
-    onTouchEnded: function (touch, event) {
+    onTouchEnded: function (event) {
     },
 
     // called every frame, uncomment this function to activate update callback

@@ -26,38 +26,38 @@ cc.Class({
         this.node.on(cc.Node.EventType.TOUCH_END, this.onTouchEnded, this, true);
     },
 
-    onTouchBegan: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchBegan: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
-        this.lastPoint = touchLoc;
+        this.lastPoint = loc;
 
         return true;
     },
 
-    onTouchMoved: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchMoved: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
         let ctx = this.ctx;
         let lastPoint = this.lastPoint;
 
         ctx.moveTo(lastPoint.x - getRandomInt(0, 2), lastPoint.y - getRandomInt(0, 2));
-        ctx.lineTo(touchLoc.x - getRandomInt(0, 2), touchLoc.y - getRandomInt(0, 2));
+        ctx.lineTo(loc.x - getRandomInt(0, 2), loc.y - getRandomInt(0, 2));
         ctx.stroke();
         
         ctx.moveTo(lastPoint.x, lastPoint.y);
-        ctx.lineTo(touchLoc.x, touchLoc.y);
+        ctx.lineTo(loc.x, loc.y);
         ctx.stroke();
         
         ctx.moveTo(lastPoint.x + getRandomInt(0, 2), lastPoint.y + getRandomInt(0, 2));
-        ctx.lineTo(touchLoc.x + getRandomInt(0, 2), touchLoc.y + getRandomInt(0, 2));
+        ctx.lineTo(loc.x + getRandomInt(0, 2), loc.y + getRandomInt(0, 2));
         ctx.stroke();
         
-        this.lastPoint = touchLoc;
+        this.lastPoint = loc;
     },
 
-    onTouchEnded: function (touch, event) {
+    onTouchEnded: function (event) {
     },
 
     // called every frame, uncomment this function to activate update callback

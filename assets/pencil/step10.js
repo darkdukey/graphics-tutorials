@@ -37,30 +37,30 @@ cc.Class({
         this.points = [];
     },
 
-    onTouchBegan: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchBegan: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
         if (this.animating) {
             this.animating = false;
             this.ctx.clear();
         }
         
-        this.points = [touchLoc];
+        this.points = [loc];
 
         return true;
     },
 
-    onTouchMoved: function (touch, event) {
-        var touchLoc = touch.getLocation();
-        touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
+    onTouchMoved: function (event) {
+        var loc = event.touch.getLocation();
+        loc = this.node.parent.convertToNodeSpaceAR(loc);
 
-        this.points.push(touchLoc);
+        this.points.push(loc);
 
         this.drawPoints(this.points, this.points.length);
     },
 
-    onTouchEnded: function (touch, event) {
+    onTouchEnded: function (event) {
     },
 
     drawPoints: function (points, l) {
